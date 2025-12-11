@@ -6,12 +6,12 @@ from runners.RetrievalRunner import Retriever
 
 
 def parse_global_args(parser: argparse.ArgumentParser):
-    parser.add_argument("--CUDA_VISIBLE_DEVICES", default='1,0')
+    parser.add_argument("--CUDA_VISIBLE_DEVICES", default='2')
     parser.add_argument("--device", default='cuda:0')
 
     parser.add_argument(
         "--llm_name",
-        default="Meta-Llama-3-8B-Instruct",
+        default="Qwen2-7B-Instruct",
         choices=['Meta-Llama-3-8B-Instruct', 'Qwen2-7B-Instruct'])
 
     parser.add_argument("--data_addr", default='data/')

@@ -23,7 +23,7 @@ def get_text_template(tokenizer: AutoTokenizer, prompt):
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--CUDA_VISIBLE_DEVICES", default='0,1')
+parser.add_argument("--CUDA_VISIBLE_DEVICES", default='2')
 parser.add_argument("--random_seed", type=int, default=2024)
 
 parser.add_argument(
@@ -37,7 +37,7 @@ parser.add_argument("--file_name",
                     default='20241009-122157_user-6_20241009-120906')
 
 parser.add_argument("--model_name",
-                    default="Meta-Llama-3-8B-Instruct",
+                    default="Qwen2-7B-Instruct",
                     choices=['Meta-Llama-3-8B-Instruct', 'Qwen2-7B-Instruct'])
 parser.add_argument("--begin_idx", type=int, default=0)
 parser.add_argument("--end_idx", type=int, default=1000000)
@@ -90,7 +90,8 @@ if __name__ == "__main__":
     ]
 
     llm = LLM(model=opts.model_path,
-              gpu_memory_utilization=0.37,
+              dtype="half",
+              gpu_memory_utilization=0.85,
               max_seq_len_to_capture=opts.cutoff_len,
               max_model_len=opts.cutoff_len)
 

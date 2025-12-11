@@ -3,13 +3,18 @@ import sys
 sys.path.append(".")
 
 import math
+import warnings
 
 import evaluate
 import jieba
 import numpy as np
 from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
 from rouge_chinese import Rouge
+from sklearn.exceptions import UndefinedMetricWarning
 from tqdm import tqdm
+
+# 抑制 F-score 警告
+warnings.filterwarnings('ignore', category=UndefinedMetricWarning)
 
 
 class LaMPEvaluation:
@@ -82,10 +87,12 @@ class Metric_F1_Accuracy:
             return self._compute_metrics(preds, labels)
         else:
             results = {"accuracy": [], "f1": []}
-            for pred, label in zip(preds, labels):
-                cur_score = self._compute_metrics([pred], [label])
-                for k in results.keys():
-                    results[k].append(cur_score[k])
+            with warnings.catch_warnings():
+                warnings.filterwarnings('ignore', category=UndefinedMetricWarning)
+                for pred, label in zip(preds, labels):
+                    cur_score = self._compute_metrics([pred], [label])
+                    for k in results.keys():
+                        results[k].append(cur_score[k])
 
             return results
 

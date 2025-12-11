@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 大文件和模型目錄（排除整個目錄，包括 .gitattributes）
+LLMs/
+*.bin
+*.safetensors
+*.h5
+*.ckpt
+
+# 輸出文件
+*_outputs/
+Qwen2-7B-Instruct_outputs/
+Meta-Llama-3-8B-Instruct_outputs/
+
+# 數據文件
+data/LaMP*/
+data/*.pkl
+data/*.pt
+data/*.json
+!data/README.md
+
+# 日誌文件
+*.log
+logs/
+
+# 系統文件
+.DS_Store
+Thumbs.db
+
+# 臨時文件
+*.tmp
+*.temp
+=3.25

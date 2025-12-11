@@ -44,7 +44,7 @@ class ModelArguments:
 class DataArguments:
     train_data: str = field(
         default=
-        "../../Meta-Llama-3-8B-Instruct_outputs/LaMP_2_time/train/recency/bge-base-en-v1.5_5/retrieval/point_base_user-6_20241009-120906_vllm_new-64/predictions_0-100.json",
+        "../../Qwen2-7B-Instruct_outputs/LaMP_2_time/train/recency/bge-base-en-v1.5_5/retrieval/point_base_user-6_20251208-134246_vllm_new-64/predictions_0-100.json",
         metadata={"help": "Path to corpus"})
 
     user_vocab_path: str = field(default="../../data/LaMP_2_time/dev/recency")
@@ -93,14 +93,14 @@ class RetrieverTrainingArguments(TrainingArguments):
 
     freeze_user_emb: bool = field(default=True)
     user_emb_path: str = field(
-        default="../../data/LaMP_2_time/dev/recency/user_emb/20241009-120906.pt"
+        default="../../data/LaMP_2_time/dev/recency/user_emb/20251208-134246.pt"
     )
     use_user: bool = field(default=True)
     persona_weight: float = field(default=0.1)
 
     output_dir: str = field(
         default=
-        '../../Meta-Llama-3-8B-Instruct_outputs/LaMP_2_time/train/recency/',
+        '../../Qwen2-7B-Instruct_outputs/LaMP_2_time/train/recency/',
         metadata={
             "help":
             "The output directory where the model predictions and checkpoints will be written."

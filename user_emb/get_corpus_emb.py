@@ -44,7 +44,7 @@ def get_corpus_emb(corpus_vocab, emb_model: EmbModel, tokenizer, batch_size,
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--CUDA_VISIBLE_DEVICES", default='0,1')
+parser.add_argument("--CUDA_VISIBLE_DEVICES", default='3')
 parser.add_argument("--device", default='cuda:0')
 parser.add_argument("--batch_size", type=int, default=128)
 parser.add_argument("--emb_model_path", default='LLMs/bge-base-en-v1.5')
