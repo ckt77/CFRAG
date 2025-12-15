@@ -1,4 +1,3 @@
-<img width="394" height="157" alt="image" src="https://github.com/user-attachments/assets/0b0e5a0a-3103-4ee3-950d-7945d2b71dcc" />2025-Fall 資訊檢索與擷取Final Project.
 原ReadMe檔案請參考原作者: https://github.com/TengShi-RUC/CFRAG
 我們依照原作者的環境設定來進行本次project, 亦可參考"requirements.txt"建置環境.
 基礎實驗設定:
