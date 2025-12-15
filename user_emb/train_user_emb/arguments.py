@@ -24,6 +24,34 @@ class ModelArguments:
     num_layers: int = field(default=1)
     num_heads: int = field(default=2)
     dropout: float = field(default=0.1)
+    
+    # 新增：池化方法選擇
+    use_attention_pooling: bool = field(
+        default=True,  # True 使用注意力機制，False 使用平均池化
+        metadata={"help": "Whether to use attention pooling (True) or average pooling (False)"}
+    )
+
+    # 相似用戶檢索與聚合相關參數
+    use_similar_user_aggregation: bool = field(
+        default=False,
+        metadata={"help": "Whether to use similar user embedding aggregation"}
+    )
+    similar_user_topk: int = field(
+        default=5,
+        metadata={"help": "Number of top-k similar users to retrieve"}
+    )
+    aggregation_method: str = field(
+        default='attention',  # ['attention', 'weighted_sum']
+        metadata={"help": "Method to aggregate similar user embeddings: 'attention' or 'weighted_sum'"}
+    )
+    similar_user_weight: float = field(
+        default=0.3,
+        metadata={"help": "Weight for similar user embeddings in final aggregation (0.0-1.0)"}
+    )
+    use_similarity_as_bias: bool = field(
+        default=True,
+        metadata={"help": "Whether to use similarity scores as bias in attention mechanism"}
+    )
 
 
 @dataclass
@@ -40,16 +68,26 @@ class DataArguments:
     max_profile_len: int = field(default=100)
     max_corpus_len: int = field(default=512)
 
-    crop_ratio: float = field(default=0.7)
-    mask_ratio: float = field(default=0.3)
-    reorder_ratio: float = field(default=0.3)
+    crop_ratio: float = field(default=0.8)
+    mask_ratio: float = field(default=0.2)
+    reorder_ratio: float = field(default=0.2)
 
     freeze_emb: bool = field(default=False)
+    
+    # 相似用戶檢索相關
+    user_emb_lookup_path: str = field(
+        default=None,
+        metadata={"help": "Path to pre-computed user embeddings for similarity search (optional)"}
+    )
+    enable_dynamic_retrieval: bool = field(
+        default=True,
+        metadata={"help": "Whether to dynamically retrieve similar users during training"}
+    )
 
 
 @dataclass
 class TrainingArguments:
-    CUDA_VISIBLE_DEVICES: str = field(default='0,1')
+    CUDA_VISIBLE_DEVICES: str = field(default='2')
 
     seed: int = field(default=20240701)
     time: str = field(default=None)
@@ -64,7 +102,7 @@ class TrainingArguments:
         default=1e-3,
         metadata={"help": "The initial learning rate for AdamW."})
     patience: int = field(
-        default=3,
+        default=1,
         metadata={
             "help":
             "Number of epochs with no improvement after which learning rate will be reduced"
@@ -75,7 +113,7 @@ class TrainingArguments:
     print_interval: int = field(default=10)
 
     num_train_epochs: int = field(
-        default=1,
+        default=3,
         metadata={"help": "Total number of training epochs to perform."})
     per_device_train_batch_size: int = field(
         default=64,

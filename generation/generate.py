@@ -42,8 +42,8 @@ parser.add_argument("--begin_idx", type=int, default=0)
 parser.add_argument("--end_idx", type=int, default=1000000)
 
 # Generation Config
-parser.add_argument("--max_new_tokens", default=64)
-parser.add_argument("--cutoff_len", default=3000)
+parser.add_argument("--max_new_tokens", type=int, default=64)
+parser.add_argument("--cutoff_len", type=int, default=3000)
 
 if __name__ == "__main__":
     opts = parser.parse_args()

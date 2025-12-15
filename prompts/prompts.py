@@ -165,7 +165,7 @@ def get_prompt_LaMP_4(inp, profile, max_length, tokenizer):
     else:
         instruction = """The historical profiles are as follows:\n{{profile}}\n"""\
             """Based on the historical profiles provided, please generate a title for the given user's input text. """\
-                """Please generate it in the following format: {'title': 'generated title'} without explanation, and use only English.\n"""\
+            """Please generate it in the following format: {'title': 'generated title'} without explanation, and use only English.\n"""\
                     f"""{query} 'title':"""
         length_add = len(tokenizer("{{profile}}")['input_ids'])
 
